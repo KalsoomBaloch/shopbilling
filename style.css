@@ -755,4 +755,57 @@ kbd {
     display: flex;
   }
 }
+  /* ==========================================================================
+   Phone navbar fix: name and tools on one row, three-dot menu fully visible
+   Add at the very end of style.css
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  /* Keep the shop name and the tool pill on the same row */
+  .app-navbar,
+  .app-navbar > .container-fluid {
+    flex-wrap: nowrap !important;
+  }
+
+  .app-navbar > .container-fluid {
+    align-items: center;
+    gap: 0.25rem;
+    padding-left: 0.6rem !important;
+    padding-right: 0.6rem !important;
+  }
+
+  .app-navbar .navbar-brand {
+    min-width: 0;
+    flex: 1 1 auto;
+    margin-right: 0 !important;
+    white-space: normal;
+  }
+
+  .app-navbar .brand-name {
+    font-size: 0.9rem;
+    line-height: 1.25;
+  }
+
+  /* The pill shrinks to fit its icons and sits at the right */
+  .button-container {
+    width: auto !important;
+    flex: 0 0 auto;
+    margin-left: 0 !important;
+    gap: 0.25rem;
+    padding: 0 0.3rem;
+    justify-content: flex-end;
+  }
+
+  /* Three-dot menu: pinned under the navbar on the right so it is never cut off */
+  .button-container .mobile-menu .dropdown-menu {
+    position: fixed !important;
+    top: calc(var(--app-navbar-height) + 4px) !important;
+    right: 8px !important;
+    left: auto !important;
+    transform: none !important;
+    min-width: 12rem;
+    max-width: calc(100vw - 16px);
+    margin: 0;
+    z-index: 1100;
+  }
+}
 }
