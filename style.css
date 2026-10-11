@@ -1,0 +1,729 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --palette-white: #f2f5f8;
+  --palette-ice: #e4f4ff;
+  --palette-sky: #b3ddf2;
+  --palette-blue: #80c6e8;
+  --palette-navy: #2c3e50;
+  --palette-red: #c0392b;   
+  
+  /* ---------- Light theme (default) ---------- */
+  --app-bg: var(--palette-white);
+  --app-surface: var(--palette-white);
+  --app-surface-muted: var(--palette-ice);
+  --app-surface-strong: var(--palette-sky);
+  --app-border: var(--palette-sky);
+  --app-text: var(--palette-navy);
+  --app-text-muted: rgba(44, 62, 80, 0.72);     /* navy at 72%, derived */
+  --app-accent: var(--palette-blue);             /* primary buttons, focus */
+  --app-accent-strong: #5fb4dc;                  /* hover, derived */
+  --app-accent-text: #2a7aa3;                    /* blue text readable on white, derived */
+  --app-accent-soft: var(--palette-ice);         /* selected row, menu hover */
+  --app-on-accent: var(--palette-navy);
+  --app-header: var(--palette-navy);             /* summary card header */
+  --app-on-header: var(--palette-white);
+  --app-icon-bg: var(--palette-navy);            /* navbar icon circles */
+  --app-icon-fg: var(--palette-white);
+  --app-icon-hover: #4a6078;                     /* derived */
+  --app-info: #2a7aa3;                           /* Held button */
+  --app-negative: var(--palette-red);
+  --app-on-negative: var(--palette-white);
+  --app-focus: rgba(128, 198, 232, 0.5);
+  --app-shadow: 0 1px 3px rgba(44, 62, 80, 0.08);
+
+  /* ---------- Shape & type ---------- */
+  --app-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --app-font-size-base: 0.9375rem;
+  --app-font-size-small: 0.8125rem;
+  --app-font-size-brand: 1.05rem;
+  --app-font-weight-strong: 600;
+  --app-radius-sm: 0.375rem;
+  --app-radius: 0.75rem;
+  --app-radius-lg: 1rem;
+  --app-navbar-height: 64px;
+  --app-column-gap: 1rem;
+
+  /* ---------- Bootstrap variables (follow the tokens above) ---------- */
+  --bs-font-sans-serif: var(--app-font-family);
+  --bs-body-font-family: var(--app-font-family);
+  --bs-body-font-size: var(--app-font-size-base);
+  --bs-body-bg: var(--app-bg);
+  --bs-body-color: var(--app-text);
+  --bs-emphasis-color: var(--app-text);
+  --bs-secondary-color: var(--app-text-muted);
+  --bs-secondary-bg: var(--app-surface-muted);
+  --bs-tertiary-bg: var(--app-surface-muted);
+  --bs-border-color: var(--app-border);
+  --bs-border-radius: var(--app-radius-sm);
+  --bs-border-radius-lg: var(--app-radius);
+  --bs-link-color: var(--app-accent-text);
+  --bs-link-hover-color: var(--app-accent-strong);
+  --bs-focus-ring-color: var(--app-focus);
+  --bs-primary: var(--app-accent);
+  --bs-danger: var(--app-negative);
+  --bs-danger-text-emphasis: var(--app-negative);
+  --bs-card-bg: var(--app-surface);
+  --bs-card-cap-bg: var(--app-surface-muted);
+  --bs-card-border-color: var(--app-border);
+  --bs-modal-bg: var(--app-surface);
+  --bs-modal-color: var(--app-text);
+  --bs-modal-border-color: var(--app-border);
+  --bs-dropdown-bg: var(--app-surface);
+  --bs-dropdown-color: var(--app-text);
+  --bs-dropdown-border-color: var(--app-border);
+  --bs-dropdown-link-color: var(--app-text);
+  --bs-dropdown-link-hover-color: var(--app-text);
+  --bs-dropdown-link-hover-bg: var(--app-accent-soft);
+  --bs-dropdown-link-active-color: var(--app-on-accent);
+  --bs-dropdown-link-active-bg: var(--app-accent);
+  --bs-table-color: var(--app-text);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--app-border);
+  --bs-table-hover-color: var(--app-text);
+  --bs-table-hover-bg: var(--app-accent-soft);
+}
+
+
+:root[data-bs-theme="dark"] {
+  --app-bg: #17212b;
+  --app-surface: #2c3e50;
+  --app-surface-muted: #233241;
+  --app-surface-strong: #34495e;
+  --app-border: rgba(179, 221, 242, 0.2);
+  --app-text: var(--palette-ice);
+  --app-text-muted: rgba(230, 243, 255, 0.68);
+  --app-accent: var(--palette-blue);
+  --app-accent-strong: var(--palette-sky);
+  --app-accent-text: var(--palette-blue);
+  --app-accent-soft: rgba(128, 198, 232, 0.16);
+  --app-on-accent: var(--palette-navy);
+  --app-header: #17212b;
+  --app-on-header: var(--palette-ice);
+  --app-icon-bg: var(--palette-blue);            /* navbar icon circles: bright in dark mode */
+  --app-icon-fg: var(--palette-navy);
+  --app-icon-hover: var(--palette-sky);
+  --app-info: var(--palette-blue);
+  --app-negative: #ff8a80;
+  --app-on-negative: var(--palette-navy);
+  --app-focus: rgba(128, 198, 232, 0.45);
+  --app-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--app-font-family);
+  font-size: var(--app-font-size-base);
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--app-accent-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--app-accent);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--app-font-weight-strong);
+  color: var(--app-text);
+}
+
+small,
+.small {
+  font-size: var(--app-font-size-small);
+}
+
+/* Bootstrap text colors that must follow our palette */
+.text-danger {
+  color: var(--app-negative) !important;
+}
+
+.text-bg-danger {
+  background-color: var(--app-negative) !important;
+  color: var(--app-on-negative) !important;
+}
+
+
+.app-navbar {
+  min-height: var(--app-navbar-height);
+  background-color: var(--app-surface) !important;
+  border-color: var(--app-border) !important;
+  box-shadow: var(--app-shadow);
+  z-index: 1030;
+}
+
+.app-navbar .container-fluid {
+  min-height: var(--app-navbar-height);
+}
+
+.app-navbar .brand-name {
+  font-size: var(--app-font-size-brand);
+  font-weight: var(--app-font-weight-strong);
+  color: var(--app-text);
+}
+
+.app-navbar .brand-accent {
+  color: var(--app-accent-text);
+}
+
+.app-navbar .brand-address {
+  color: var(--app-text-muted);
+  font-size: var(--app-font-size-small);
+  margin-top: 0.15rem;
+}
+
+/* Quick navigation bar: home, shortcuts, theme, address, account */
+.button-container {
+  display: flex;
+  width: 300px;
+  height: 44px;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 1rem;
+  padding: 0 0.25rem;
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  background-color: var(--app-surface-muted);
+}
+
+.button-container .dropdown {
+  display: flex;
+}
+
+.button-container .button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--app-icon-bg);
+  color: var(--app-icon-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.button-container .button:hover,
+.button-container .button:focus-visible {
+  transform: translateY(-2px);
+  background-color: var(--app-icon-hover);
+  color: var(--app-icon-fg);
+}
+
+.button-container .icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  display: block;
+}
+
+/* Account button shows the avatar in a ring, not a filled circle */
+.button-container .account-button {
+  position: relative;
+  line-height: 0;
+  background-color: transparent;
+}
+
+.button-container .account-button:hover,
+.button-container .account-button:focus-visible {
+  background-color: transparent;
+  transform: translateY(-2px);
+}
+
+.avatar-img {
+  object-fit: cover;
+  border: 2px solid var(--app-icon-bg);
+  border-radius: 50%;
+  background-color: var(--app-surface);
+}
+
+.status-dot {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--app-accent);
+  border: 2px solid var(--app-surface);
+}
+
+.location-menu {
+  min-width: 14rem;
+}
+
+.account-menu {
+  min-width: 14rem;
+  padding: 0.4rem;
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  background-color: var(--app-surface);
+  box-shadow: var(--app-shadow);
+}
+
+.account-menu .dropdown-item {
+  border-radius: var(--app-radius-sm);
+  padding: 0.5rem 0.75rem;
+  color: var(--app-text);
+}
+
+.account-menu .dropdown-item:hover,
+.account-menu .dropdown-item:focus {
+  background-color: var(--app-accent-soft);
+  color: var(--app-text);
+}
+
+.account-menu .dropdown-item.text-danger:hover {
+  background-color: var(--app-accent-soft);
+  color: var(--app-negative);
+}
+
+.account-menu .dropdown-item-text,
+.location-menu .dropdown-item-text {
+  padding: 0.5rem 0.75rem;
+  color: var(--app-text);
+}
+
+.profile-summary {
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+.card {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+  color: var(--app-text);
+}
+
+.toolbar-card .card-body {
+  padding: 0.75rem;
+}
+
+.cart-card {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Form controls
+   ========================================================================== */
+.form-control,
+.form-select {
+  background-color: var(--app-surface);
+  color: var(--app-text);
+  border-color: var(--app-border);
+}
+
+.form-control::placeholder {
+  color: var(--app-text-muted);
+  opacity: 1;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--app-accent);
+  box-shadow: 0 0 0 0.2rem var(--app-focus);
+}
+
+.form-control.is-invalid {
+  border-color: var(--app-negative);
+}
+
+.form-control[readonly] {
+  background-color: var(--app-surface-muted);
+  color: var(--app-text);
+}
+
+.input-group-text {
+  background-color: var(--app-surface-muted);
+  color: var(--app-text-muted);
+  border-color: var(--app-border);
+}
+
+.search-group .form-control {
+  font-size: var(--app-font-size-base);
+  min-width: 14rem;
+}
+
+.date-group {
+  width: auto;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+/* Save & Print, Save, Add */
+.btn-success {
+  --bs-btn-color: var(--app-on-accent);
+  --bs-btn-bg: var(--app-accent);
+  --bs-btn-border-color: var(--app-accent);
+  --bs-btn-hover-color: var(--app-on-accent);
+  --bs-btn-hover-bg: var(--app-accent-strong);
+  --bs-btn-hover-border-color: var(--app-accent-strong);
+  --bs-btn-active-color: var(--app-on-accent);
+  --bs-btn-active-bg: var(--app-accent-strong);
+  --bs-btn-active-border-color: var(--app-accent-strong);
+  --bs-btn-disabled-color: var(--app-on-accent);
+  --bs-btn-disabled-bg: var(--app-accent);
+  --bs-btn-disabled-border-color: var(--app-accent);
+  font-weight: 500;
+}
+
+/* Add customer (+) */
+.btn-outline-success {
+  --bs-btn-color: var(--app-accent-text);
+  --bs-btn-border-color: var(--app-accent);
+  --bs-btn-hover-color: var(--app-on-accent);
+  --bs-btn-hover-bg: var(--app-accent);
+  --bs-btn-hover-border-color: var(--app-accent);
+  --bs-btn-active-color: var(--app-on-accent);
+  --bs-btn-active-bg: var(--app-accent);
+  --bs-btn-active-border-color: var(--app-accent);
+}
+
+/* Draft */
+.btn-warning {
+  --bs-btn-color: var(--app-text);
+  --bs-btn-bg: var(--app-surface-strong);
+  --bs-btn-border-color: var(--app-surface-strong);
+  --bs-btn-hover-color: var(--app-text);
+  --bs-btn-hover-bg: var(--app-border);
+  --bs-btn-hover-border-color: var(--app-border);
+  --bs-btn-active-color: var(--app-text);
+  --bs-btn-active-bg: var(--app-border);
+  --bs-btn-active-border-color: var(--app-border);
+  font-weight: 500;
+}
+
+/* Reset, Logout */
+.btn-danger {
+  --bs-btn-color: var(--app-on-negative);
+  --bs-btn-bg: var(--app-negative);
+  --bs-btn-border-color: var(--app-negative);
+  --bs-btn-hover-color: var(--app-on-negative);
+  --bs-btn-hover-bg: var(--app-negative);
+  --bs-btn-hover-border-color: var(--app-negative);
+  --bs-btn-active-color: var(--app-on-negative);
+  --bs-btn-active-bg: var(--app-negative);
+  --bs-btn-active-border-color: var(--app-negative);
+  filter: brightness(1);
+  font-weight: 500;
+}
+
+.btn-danger:hover {
+  filter: brightness(0.92);
+}
+
+/* Held */
+.btn-outline-info {
+  --bs-btn-color: var(--app-info);
+  --bs-btn-border-color: var(--app-info);
+  --bs-btn-hover-color: var(--app-on-accent);
+  --bs-btn-hover-bg: var(--app-info);
+  --bs-btn-hover-border-color: var(--app-info);
+  --bs-btn-active-color: var(--app-on-accent);
+  --bs-btn-active-bg: var(--app-info);
+  --bs-btn-active-border-color: var(--app-info);
+}
+
+.held-btn {
+  white-space: nowrap;
+}
+
+.held-btn .badge {
+  font-size: 0.7rem;
+}
+
+/* ==========================================================================
+   Cart table
+   ========================================================================== */
+.cart-table {
+  color: var(--app-text);
+  font-size: var(--app-font-size-base);
+  --bs-table-bg: var(--app-surface);
+}
+
+.cart-table thead th {
+  background-color: var(--app-surface-muted);
+  color: var(--app-text-muted);
+  font-size: var(--app-font-size-small);
+  font-weight: var(--app-font-weight-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--app-border);
+  padding: 0.65rem 0.75rem;
+  z-index: 2;
+}
+
+.cart-table tbody td {
+  background-color: var(--app-surface);
+  color: var(--app-text);
+  padding: 0.6rem 0.75rem;
+  border-color: var(--app-border);
+}
+
+.cart-table tbody tr.is-selected > td {
+  background-color: var(--app-accent-soft);
+}
+
+.cart-table tbody tr.empty-row > td,
+.cart-table tbody tr.empty-row:hover > td {
+  background-color: var(--app-surface);
+  color: var(--app-text-muted);
+}
+
+.cart-table .qty-input {
+  max-width: 5rem;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Amount summary card
+   ========================================================================== */
+.summary-card {
+  overflow: hidden;
+}
+
+.summary-header {
+  background-color: var(--app-header);
+  color: var(--app-on-header);
+  border-bottom: 0;
+  padding: 0.9rem 1rem;
+}
+
+.summary-header h2 {
+  color: var(--app-on-header);
+}
+
+.summary-header small {
+  color: var(--app-on-header);
+  opacity: 0.75;
+}
+
+.summary-card .card-body {
+  padding: 1rem;
+}
+
+.summary-card .form-label {
+  color: var(--app-text-muted) !important;
+  font-weight: 500;
+}
+
+.summary-card .readonly-field {
+  background-color: var(--app-surface-muted);
+  border-color: transparent;
+}
+
+.summary-card .readonly-field.text-danger {
+  color: var(--app-negative) !important;
+}
+
+.summary-footer {
+  background-color: var(--app-surface-muted);
+  border-top: 1px solid var(--app-border);
+  padding: 0.75rem 1rem;
+}
+
+.summary-footer .btn {
+  padding: 0.6rem 0.5rem;
+}
+
+/* ==========================================================================
+   Modals and shortcut list
+   ========================================================================== */
+.modal-content {
+  background-color: var(--app-surface);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius-lg);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--app-border);
+}
+
+.shortcut-list .list-group-item {
+  background-color: var(--app-surface);
+  color: var(--app-text);
+  border-color: var(--app-border);
+  padding: 0.65rem 0.25rem;
+}
+
+kbd {
+  background-color: var(--app-surface-muted);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+  border-bottom-width: 2px;
+  border-radius: var(--app-radius-sm);
+  padding: 0.15rem 0.4rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Layout (desktop): fixed screen, cart scrolls inside its card
+   ========================================================================== */
+.billing-page .row {
+  --bs-gutter-x: var(--app-column-gap);
+  --bs-gutter-y: var(--app-column-gap);
+}
+
+.billing-page {
+  height: calc(100vh - var(--app-navbar-height));
+  overflow: hidden;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.billing-page > .row {
+  height: 100%;
+}
+
+.cart-column {
+  min-height: 0;
+}
+
+.toolbar-card {
+  flex-shrink: 0;
+}
+
+.cart-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-card .cart-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.cart-card thead th {
+  position: sticky;
+  top: 0;
+}
+
+.summary-column {
+  min-height: 0;
+}
+
+.summary-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-card .card-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.summary-footer {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Responsive: below lg (992px) columns stack and the page scrolls
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .billing-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .billing-page > .row {
+    height: auto;
+  }
+
+  .cart-column,
+  .summary-column {
+    min-height: auto;
+  }
+
+  .cart-card {
+    min-height: auto;
+  }
+
+  .cart-card .cart-scroll {
+    max-height: 50vh;
+    min-height: 240px;
+  }
+
+  .summary-card {
+    height: auto;
+  }
+
+  .summary-card .card-body {
+    overflow: visible;
+  }
+}
+
+/* ==========================================================================
+   Small phones (below md: 768px)
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  .app-navbar .brand-name {
+    font-size: 0.95rem;
+  }
+
+  .app-navbar .brand-address {
+    display: none;
+  }
+
+  .button-container {
+    width: 220px;
+    margin-left: 0.5rem;
+  }
+
+  .button-container .button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .search-group .form-control {
+    min-width: 0;
+  }
+
+  .toolbar-card .card-body {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .date-group,
+  .held-btn {
+    width: 100%;
+  }
+
+  .summary-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+  }
+
+  .billing-page {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
