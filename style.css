@@ -726,4 +726,33 @@ kbd {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
+  /* ==========================================================================
+   Three-dot menu: hidden on desktop, shown on phones
+   ========================================================================== */
+.button-container .mobile-menu {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .app-navbar .navbar-brand {
+    min-width: 0;
+  }
+
+  .button-container {
+    width: auto;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+
+  .button-container .mobile-hide {
+    display: none !important;
+  }
+
+  .button-container .mobile-menu {
+    display: flex;
+  }
+}
 }

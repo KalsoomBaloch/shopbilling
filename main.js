@@ -74,6 +74,15 @@ function initTheme() {
   });
 }
 
+/* ---------- Mobile menu: forward clicks to the matching desktop button ---------- */
+function initForwardClicks() {
+  document.querySelectorAll('[data-forward]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelector(btn.dataset.forward)?.click();
+    });
+  });
+}
+
 /* ---------- Account (Account option in avatar menu) ---------- */
 
 function loadProfile() {
