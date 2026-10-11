@@ -182,6 +182,7 @@ function initSummaryActions() {
 
 async function init() {
   initTheme();
+  initForwardClicks();   // ← added
   initAccount();
   initCart();
   initTotals();
